@@ -1,0 +1,35 @@
+Manual custom buffersize enabler for MPC/FORCE by Amit Talwar
+**************************************************************** 
+you can set Period/Buffer size to one of the following: 64,96,128
+It is not recommended to use 64 as the cpu load might cause audio glitches.
+Force internal buffersize will be set to the value x 4 instead of default multiplier of 2.
+
+find the script file that launches your MPC executable. its different for each Modded Firmware
+add this line to that script before  MPC is called:
+
+LD_PRELOAD=full-path-to-customBufferSizeMPC.so
+
+basically you need to enter complete path of the included customBufferSizeMPC.so file.
+you can copy this entire folder to you ssd or sd card.. and cd to the directory an do a echo $PWD to print complete path.
+
+if you script already has some LD_PRELOAD, you can add this to the same line at  the start separated by a space.
+
+	next you run the included script from the terminal : customBufferSizer
+
+./customBufferSizer or fullPathTo customBufferSizer
+
+it takes one of the following ARGUMENTS
+ENABLE  (will prompt you to choose buffer size)
+DISABLE (disabled custom buffer size)
+
+
+
+i just checked and for hakai, you'd need to edit the /usr/bin/az01-launch-MPC file and edit the ld prepaid line based on the instructions..
+
+
+
+
+
+
+
+export LD_PRELOAD="/usr/lib/fullforce.so"
