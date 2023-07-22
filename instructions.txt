@@ -1,35 +1,29 @@
-Manual custom buffersize enabler for MPC/FORCE by Amit Talwar
-**************************************************************** 
-you can set Period/Buffer size to one of the following: 64,96,128
-It is not recommended to use 64 as the cpu load might cause audio glitches.
-Force internal buffersize will be set to the value x 4 instead of default multiplier of 2.
+Manual custom buffersize enabler for MPC/FORCE - Originally by Amit Talwar
+********************************************************************************
+The MPC One needs the Hakai firmware installed, after which a cusom middleware is installed to for the ALSA audio driver calls.
 
-find the script file that launches your MPC executable. its different for each Modded Firmware
-add this line to that script before  MPC is called:
+Period/Buffer size to one of the following: 64,96,128
 
-LD_PRELOAD=full-path-to-customBufferSizeMPC.so
+It is not recommended to use 64 as the cpu load might cause audio glitches. 128 seems to have fixed all pops and crackles in my ES-9.
 
-basically you need to enter complete path of the included customBufferSizeMPC.so file.
-you can copy this entire folder to you ssd or sd card.. and cd to the directory an do a echo $PWD to print complete path.
-
-if you script already has some LD_PRELOAD, you can add this to the same line at  the start separated by a space.
-
-	next you run the included script from the terminal : customBufferSizer
-
-./customBufferSizer or fullPathTo customBufferSizer
-
-it takes one of the following ARGUMENTS
-ENABLE  (will prompt you to choose buffer size)
-DISABLE (disabled custom buffer size)
-
-
-
-i just checked and for hakai, you'd need to edit the /usr/bin/az01-launch-MPC file and edit the ld prepaid line based on the instructions..
-
-
-
-
-
-
-
-export LD_PRELOAD="/usr/lib/fullforce.so"
+Instructions:
+	1. Install the Hakai Firmware
+	2. Copy the custombuffer files to the SD card (from your computer)
+		2.1. customBufferSizeMPC.so
+		2.2. customBufferSizer.sh
+	3. Open putty terminal to your MPC, login as root (My MPC One I used the ethernet connection to get a direct connection to my laptop)
+	4. Mount the filesystem as writeable
+		4.1. mount -o rw,remount,rw /
+	5. Copy the files to the internal drive
+		5.1. cp /media/SDCARDNAME/customBufferSizeMPC.so /media/az01-internal/customBufferSizeMPC.so
+		5.2. cp /media/SDCARDNAME/customBufferSizer.sh /media/az01-internal/customBufferSizer.sh
+	6. Make the shell script executable
+		6.1. chmod +x /media/az01-internal/customBufferSizer.sh
+	7. Modify the LD_PRELOAD
+		7.1. vi /usr/bin/az01-internal-launch-MPC
+		7.2. scroll down until you see the line with LD_PRELOAD= line, and press 'i' for insert mode, until it reads:
+			LD_PRELOAD="/usr/lib/fullforce.so /media/az01-internal/customBufferSizeMPC.so"
+		7.3. press the escape key, and then ':wq' to save and quit
+	7. Execute the shell script to set the buffersize
+		7.1. /media/az01-internal/customBufferSizer.sh ENABLE
+		7.2. after selecting your buffer size, the MPC will restart
