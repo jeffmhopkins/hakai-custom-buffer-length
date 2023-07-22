@@ -1,6 +1,6 @@
 Manual custom buffersize enabler for MPC/FORCE - Originally by Amit Talwar
 ********************************************************************************
-The MPC One needs the Hakai firmware installed, after which a cusom middleware is installed to for the ALSA audio driver calls.
+The MPC One needs the Hakai firmware installed, after which a cusom middleware is installed for the ALSA audio driver calls.
 
 Period/Buffer size to one of the following: 64,96,128
 
