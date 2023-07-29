@@ -27,3 +27,5 @@ Instructions:
 	7. Execute the shell script to set the buffersize
 		7.1. /media/az01-internal/customBufferSizer.sh ENABLE
 		7.2. after selecting your buffer size, the MPC will restart
+
+note: you may need to also add the ld_preload into the second option for MPC standalone mode. (I'll give better description soon)
