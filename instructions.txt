@@ -24,8 +24,8 @@ Instructions:
 		7.2. scroll down until you see the line with LD_PRELOAD= line, and press 'i' for insert mode, until it reads:
 			LD_PRELOAD="/usr/lib/fullforce.so /media/az01-internal/customBufferSizeMPC.so"
 		7.3. press the escape key, and then ':wq' to save and quit
+		7.4. scoll down and add LD_PRELOAD="/media/az01-internal/customBufferSizeMPC.so" underneath the shell script option if launching in normal MPC Mode
+			***7.4 could use better instructions/screenshot of where this is added***
 	7. Execute the shell script to set the buffersize
 		7.1. /media/az01-internal/customBufferSizer.sh ENABLE
 		7.2. after selecting your buffer size, the MPC will restart
-
-note: you may need to also add the ld_preload into the second option for MPC standalone mode. (I'll give better description soon)
